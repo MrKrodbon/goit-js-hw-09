@@ -24,14 +24,14 @@ fillFormFields();
 
 const onFormFieldInput = event => {
   const fieldName = event.target.name;
-  const fieldValue = event.target.value.trim('');
+  const fieldValue = event.target.value.trim();
   formData[fieldName] = fieldValue;
   localStorage.setItem('feedback-form-state', JSON.stringify(formData));
 };
 
 const onFormSubmit = event => {
-  const emailValue = feedbackForm.elements['email'].value;
-  const messageValue = feedbackForm.elements['message'].value;
+  const emailValue = feedbackForm.elements['email'].value.trim();
+  const messageValue = feedbackForm.elements['message'].value.trim();
 
   event.preventDefault();
   if (emailValue && messageValue) {

@@ -22,9 +22,9 @@ const fillFormFields = () => {
 
 fillFormFields();
 
-const onFormFieldChange = event => {
+const onFormFieldInput = event => {
   const fieldName = event.target.name;
-  const fieldValue = event.target.value;
+  const fieldValue = event.target.value.trim('');
   formData[fieldName] = fieldValue;
   localStorage.setItem('feedback-form-state', JSON.stringify(formData));
 };
@@ -38,10 +38,12 @@ const onFormSubmit = event => {
     console.log(formData);
     event.target.reset();
     localStorage.removeItem('feedback-form-state');
+    formData.email = '';
+    formData.message = '';
   } else {
     alert('Fill please all fields');
   }
 };
 
-feedbackForm.addEventListener('change', onFormFieldChange);
+feedbackForm.addEventListener('input', onFormFieldInput);
 feedbackForm.addEventListener('submit', onFormSubmit);
